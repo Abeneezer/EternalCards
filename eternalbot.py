@@ -2,10 +2,10 @@ import praw
 import re
 
 bot = praw.Reddit(user_agent='EternalCards 0.1',
-                  client_id='RtHZw0fr45qWUQ',
-                  client_secret='2anumbtWPIOuuBUsQJOmHuqGgUc',
-                  username='EternalCards',
-                  password='EternalCards')
+                  client_id='XzEVaUokS7Rq9w',
+                  client_secret='bIHZMZ3UR-a-VCR9IeQLLobSBfk',
+                  username='Abeneezer',
+                  password='pizzaplace')
 
 subreddit = bot.subreddit('EternalCardGame')
 
@@ -30,5 +30,5 @@ for comment in comments:
         finished = buildResponse(text)
         message = finished
         print(message)
-        #
+
         comment.reply(message)
