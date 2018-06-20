@@ -30,4 +30,5 @@ for comment in comments:
         finished = buildResponse(text)
         message = finished
         print(message)
+        #
         comment.reply(message)
