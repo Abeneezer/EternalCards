@@ -7,7 +7,7 @@ bot = praw.Reddit(user_agent='EternalCards 0.1',
                   username='EternalCards',
                   password='EternalCards')
 
-subreddit = bot.subreddit('Abeneezer')
+subreddit = bot.subreddit('EternalCardGame')
 
 comments = subreddit.stream.comments()
 
