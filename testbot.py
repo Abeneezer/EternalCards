@@ -7,6 +7,12 @@ bot = praw.Reddit(user_agent='EternalCards 0.1',
                   username='EternalCards',
                   password='EternalCards')
 
+bot = praw.Reddit(user_agent='EternalCards 0.1',
+                  client_id='XzEVaUokS7Rq9w',
+                  client_secret='bIHZMZ3UR-a-VCR9IeQLLobSBfk',
+                  username='Abeneezer',
+                  password='pizzaplace')
+
 subreddit = bot.subreddit('Abeneezer')
 
 comments = subreddit.stream.comments()
