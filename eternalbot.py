@@ -15,7 +15,7 @@ bot = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('Abeneezer')
+subreddit = bot.subreddit('EternalCardGame')
 
 comments = subreddit.stream.comments()
 
@@ -49,4 +49,4 @@ for comment in comments:
         message = finished + "\n ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer}"
         if finished != '':
             print(message)
-            comment.reply(message)
+            #comment.reply(message)
