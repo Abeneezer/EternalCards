@@ -49,4 +49,4 @@ for comment in comments:
         message = finished + "\n ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer}"
         if finished != '':
             print(message)
-            #comment.reply(message)
+            comment.reply(message)
