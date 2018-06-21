@@ -33,7 +33,7 @@ def buildResponse(comment, result = ''):
     length = len(comm)
     param = comm[start+2:end-length]
     param2 = '[' + param.title() + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
-    if param in 'Starsteel Daisho':
+    if param in allNames:
         newResult = result + param2
     else:
         newResult = result
@@ -48,5 +48,5 @@ for comment in comments:
         finished = buildResponse(text)
         message = finished + "\n ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer}"
         if finished != '':
-            print('sent message')
+            print(message)
             comment.reply(message)
