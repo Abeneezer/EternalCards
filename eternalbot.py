@@ -15,7 +15,7 @@ bot = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('EternalCardGame')
+subreddit = bot.subreddit('Abeneezer')
 
 comments = subreddit.stream.comments()
 
@@ -51,8 +51,8 @@ def buildResponse(comment, result = ''):
 
 for comment in comments:
     text = comment.body
-    print(text)
-    if '[[' and ']]' in text and comment.author != 'EternalCards':
+    #print(text)
+    if '[[' and ']]' in text and comment.author != 'Abeneezer':
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
         if finished != '':
