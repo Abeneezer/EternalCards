@@ -40,7 +40,6 @@ def buildResponse(comment, result = ''):
             link = fullNames[x][1]
     param2 = '[' + param.title() + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
     param3 = ' - [(EW)](' + link + ') \n'
-    #pprint(names)
     if param in names:
         newResult = result + param2 + param3
     else:
@@ -57,4 +56,4 @@ for comment in comments:
         message = finished + "^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
         if finished != '':
             print (message)
-            #comment.reply(message)
+            comment.reply(message)
