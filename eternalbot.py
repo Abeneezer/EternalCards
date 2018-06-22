@@ -15,7 +15,7 @@ bot = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('EternalCardGame')
+subreddit = bot.subreddit('Abeneezer')
 
 comments = subreddit.stream.comments()
 
@@ -39,7 +39,7 @@ def buildResponse(comment, result = ''):
         if fullNames[x][0] == param:
             link = fullNames[x][1]
     param2 = '[' + param.title() + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
-    param3 = ' - [(EW)](' + link + ') \n'
+    param3 = ' - ([EW](' + link + ')) \n \n'
     if param in names:
         newResult = result + param2 + param3
     else:
@@ -53,7 +53,7 @@ for comment in comments:
     text = comment.body
     if '[[' and ']]' in text and comment.author != 'EternalCards':
         finished = buildResponse(text)
-        message = finished + "^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
+        message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
         if finished != '':
             print (message)
             comment.reply(message)
