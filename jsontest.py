@@ -1,6 +1,10 @@
 import json
 from pprint import pprint
 
+allNames = []
+
 with open('eternal-cards.json') as f:
     data = json.load(f)
-pprint(data[1052]["SetNumber"])
+    for x in range(0, len(data)):
+        allNames.append([data[x]["Name"], data[x]["DetailsUrl"]])
+    pprint(allNames[1][1])

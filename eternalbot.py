@@ -15,16 +15,18 @@ bot = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('EternalCardGame')
+subreddit = bot.subreddit('Abeneezer')
 
 comments = subreddit.stream.comments()
 
-allNames = []
+fullNames = []
+names = []
 
 with open('eternal-cards.json') as f:
     data = json.load(f);
     for x in range(0, len(data)):
-        allNames.append(data[x]["Name"])
+        fullNames.append([data[x]["Name"], data[x]["DetailsUrl"]])
+    names = [link[0] for link in fullNames]
 
 def buildResponse(comment, result = ''):
     comm = comment.title()
@@ -32,9 +34,15 @@ def buildResponse(comment, result = ''):
     end = comm.index(']]')
     length = len(comm)
     param = comm[start+2:end-length]
+    link = 'link not found'
+    for x in range(0, len(fullNames)):
+        if fullNames[x][0] == param:
+            link = fullNames[x][1]
     param2 = '[' + param.title() + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
-    if param in allNames:
-        newResult = result + param2
+    param3 = ' - [(EW)](' + link + ') \n'
+    #pprint(names)
+    if param in names:
+        newResult = result + param2 + param3
     else:
         newResult = result
     rString = comm[end-length+1:]
@@ -46,7 +54,7 @@ for comment in comments:
     text = comment.body
     if '[[' and ']]' in text and comment.author != 'EternalCards':
         finished = buildResponse(text)
-        message = finished + "\n ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer}"
+        message = finished + "^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
         if finished != '':
-            print(message)
-            comment.reply(message)
+            print (message)
+            #comment.reply(message)
