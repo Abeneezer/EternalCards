@@ -51,6 +51,7 @@ def buildResponse(comment, result = ''):
 
 for comment in comments:
     text = comment.body
+    print(text)
     if '[[' and ']]' in text and comment.author != 'EternalCards':
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
