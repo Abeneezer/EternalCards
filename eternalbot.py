@@ -26,10 +26,11 @@ with open('eternal-cards.json') as f:
     data = json.load(f);
     for x in range(0, len(data)):
         fullNames.append([data[x]["Name"], data[x]["DetailsUrl"]])
-    names = [link[0] for link in fullNames]
+    names = [link[0].lower() for link in fullNames]
 
 def buildResponse(comment, result = ''):
     comm = comment.title()
+    #print(names)
     start = comm.index('[[')
     end = comm.index(']]')
     length = len(comm)
@@ -40,7 +41,7 @@ def buildResponse(comment, result = ''):
             link = fullNames[x][1]
     param2 = '[' + param.title() + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
     param3 = ' - ([EW](' + link + ')) \n \n'
-    if param in names:
+    if param.lower() in names:
         newResult = result + param2 + param3
     else:
         newResult = result
@@ -51,8 +52,7 @@ def buildResponse(comment, result = ''):
 
 for comment in comments:
     text = comment.body
-    #print(text)
-    if '[[' and ']]' in text and comment.author != 'EternalCardGame':
+    if '[[' and ']]' in text and comment.author != 'EternalCards':
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
         if finished != '':
