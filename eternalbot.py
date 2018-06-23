@@ -3,19 +3,21 @@ import re
 import json
 from pprint import pprint
 
-botAlt = praw.Reddit(user_agent='EternalCards 0.1',
+bot = praw.Reddit(user_agent='EternalCards 0.1',
                   client_id='RtHZw0fr45qWUQ',
                   client_secret='2anumbtWPIOuuBUsQJOmHuqGgUc',
                   username='EternalCards',
                   password='EternalCards')
 
-bot = praw.Reddit(user_agent='EternalCards 0.1',
+botAlt = praw.Reddit(user_agent='EternalCards 0.1',
                   client_id='XzEVaUokS7Rq9w',
                   client_secret='bIHZMZ3UR-a-VCR9IeQLLobSBfk',
                   username='Abeneezer',
                   password='pizzaplace')
 
 subreddit = bot.subreddit('EternalCardGame')
+
+writerName = 'EternalCards'
 
 comments = subreddit.stream.comments()
 
@@ -25,21 +27,22 @@ names = []
 with open('eternal-cards.json') as f:
     data = json.load(f);
     for x in range(0, len(data)):
-        fullNames.append([data[x]["Name"], data[x]["DetailsUrl"]])
+        fullNames.append([data[x]["Name"], data[x]["DetailsUrl"], data[x]["ImageUrl"]])
     names = [link[0].lower() for link in fullNames]
 
 def buildResponse(comment, result = ''):
-    comm = comment.title()
-    #print(names)
+    comm = comment
     start = comm.index('[[')
     end = comm.index(']]')
     length = len(comm)
     param = comm[start+2:end-length]
+    url = '[' + param + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
     link = 'link not found'
     for x in range(0, len(fullNames)):
-        if fullNames[x][0] == param:
+        if fullNames[x][0].lower() == param.lower():
             link = fullNames[x][1]
-    param2 = '[' + param.title() + '](https://cards.eternalwarcry.com/cards/full/' + param.replace(' ', '_') + '.png)  '
+            url = fullNames[x][2]
+    param2 = '[' + param + '](' + url + ')  '
     param3 = ' - ([EW](' + link + ')) \n \n'
     if param.lower() in names:
         newResult = result + param2 + param3
@@ -51,10 +54,15 @@ def buildResponse(comment, result = ''):
     return newResult;
 
 for comment in comments:
+    comment.refresh()
+    alreadyDone = False
+    for y in comment.replies:
+        if y.author == writerName or 'Abeneezer':
+            alreadyDone = True
     text = comment.body
-    if '[[' and ']]' in text and comment.author != 'EternalCards':
+    if '[[' and ']]' in text and comment.author != writerName and not alreadyDone:
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
         if finished != '':
             print (message)
-            comment.reply(message)
+            #comment.reply(message)
