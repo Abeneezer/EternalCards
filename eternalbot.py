@@ -43,7 +43,7 @@ def buildResponse(comment, result = ''):
             link = fullNames[x][1]
             url = fullNames[x][2]
     param2 = '[' + param + '](' + url + ')  '
-    param3 = ' - ([EW](' + link + ')) \n \n'
+    param3 = ' - ([EWC](' + link + ')) \n \n'
     if param.lower() in names:
         newResult = result + param2 + param3
     else:
