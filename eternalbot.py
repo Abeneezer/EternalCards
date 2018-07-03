@@ -31,6 +31,7 @@ with open('eternal-cards.json') as f:
     names = [link[0].lower() for link in fullNames]
 
 def buildResponse(comment, result = ''):
+    print(comment)
     comm = comment
     start = comm.index('[[')
     end = comm.index(']]')
