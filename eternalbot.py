@@ -62,7 +62,7 @@ for comment in comments:
     text = comment.body
     if '[[' and ']]' in text and comment.author != writerName and not alreadyDone:
         finished = buildResponse(text)
-        message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^/u/Abeneezer"
+        message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
         if finished != '':
             print (message)
             comment.reply(message)
