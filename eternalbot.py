@@ -31,7 +31,6 @@ with open('eternal-cards.json') as f:
     names = [link[0].lower() for link in fullNames]
 
 def buildResponse(comment, result = ''):
-    print(comment)
     comm = comment
     start = comm.index('[[')
     end = comm.index(']]')
@@ -62,6 +61,7 @@ for comment in comments:
             alreadyDone = True
     text = comment.body
     if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
+        print(text)
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
         if finished != '':
