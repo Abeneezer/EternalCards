@@ -57,7 +57,7 @@ for comment in comments:
     comment.refresh()
     alreadyDone = False
     for y in comment.replies:
-        if y.author == writerName or 'Abeneezer':
+        if y.author == writerName:
             alreadyDone = True
     text = comment.body
     if '[[' and ']]' in text and comment.author != writerName and not alreadyDone:
