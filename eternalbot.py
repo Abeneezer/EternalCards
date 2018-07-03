@@ -66,3 +66,5 @@ for comment in comments:
         if finished != '':
             print (message)
             comment.reply(message)
+
+            
