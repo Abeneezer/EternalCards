@@ -50,7 +50,7 @@ def buildResponse(comment, result = ''):
     else:
         newResult = result
     rString = comm[end-length+1:]
-    if '[[' and ']]' in rString:
+    if '[[' in rString and ']]' in rString:
         newResult = buildResponse(rString, newResult);
     return newResult;
 
@@ -61,7 +61,7 @@ for comment in comments:
         if y.author == writerName:
             alreadyDone = True
     text = comment.body
-    if '[[' and ']]' in text and comment.author != writerName and not alreadyDone:
+    if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
         if finished != '':
