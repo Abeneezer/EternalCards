@@ -15,7 +15,7 @@ botAlt = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('EternalCardGame')
+subreddit = bot.subreddit('Abeneezer')
 
 writerName = 'EternalCards'
 
@@ -53,6 +53,8 @@ def buildResponse(comment, result = ''):
         newResult = buildResponse(rString, newResult);
     return newResult;
 
+print("hey")
+
 for comment in comments:
     comment.refresh()
     alreadyDone = False
@@ -66,4 +68,4 @@ for comment in comments:
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
         if finished != '':
             print (message)
-            comment.reply(message)
+            #comment.reply(message)
