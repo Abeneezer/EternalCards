@@ -15,7 +15,7 @@ botAlt = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('Abeneezer')
+subreddit = bot.subreddit('EternalCardGame')
 
 writerName = 'EternalCards'
 
@@ -57,10 +57,9 @@ for comment in comments:
     comment.refresh()
     alreadyDone = False
     for y in comment.replies:
-        if y.author == writerName or y.author == 'Abeneezer':
+        if y.author == writerName:
             alreadyDone = True
     text = comment.body
-    #print(text)
     if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
