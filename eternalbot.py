@@ -25,7 +25,7 @@ fullNames = []
 names = []
 
 with open('eternal-cards.json') as f:
-    data = json.load(f);
+    data = json.load(f, encoding='utf-8');
     for x in range(0, len(data)):
         fullNames.append([data[x]["Name"], data[x]["DetailsUrl"], data[x]["ImageUrl"]])
     names = [link[0].lower() for link in fullNames]
