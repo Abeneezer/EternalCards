@@ -15,7 +15,7 @@ botAlt = praw.Reddit(user_agent='EternalCards 0.1',
                   username='Abeneezer',
                   password='pizzaplace')
 
-subreddit = bot.subreddit('Abeneezer')
+subreddit = bot.subreddit('EternalCardGame')
 
 writerName = 'EternalCards'
 
