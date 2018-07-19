@@ -1,0 +1,3 @@
+*EternalCards
+
+subreddit bot
