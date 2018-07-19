@@ -1,3 +1,3 @@
-*EternalCards
+# EternalCards
 
-subreddit bot
+Subreddit bots for fetching cards in /r/EternalCardGame
