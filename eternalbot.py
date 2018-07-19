@@ -53,8 +53,6 @@ def buildResponse(comment, result = ''):
         newResult = buildResponse(rString, newResult);
     return newResult;
 
-print("hey")
-
 for comment in comments:
     comment.refresh()
     alreadyDone = False
@@ -62,6 +60,7 @@ for comment in comments:
         if y.author == writerName:
             alreadyDone = True
     text = comment.body
+    print(text)
     if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
         print(text)
         finished = buildResponse(text)
