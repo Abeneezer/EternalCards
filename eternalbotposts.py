@@ -99,7 +99,6 @@ for submission in submissions:
         if y.author == writerName:
             alreadyDone = True
     text = submission.selftext
-    print(text)
     if '[[' in text and ']]' in text and submission.author != writerName and not alreadyDone:
         finished = buildResponse(text)
         message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
