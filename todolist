@@ -4,4 +4,4 @@ checking if the card actually exists. ----------------- CHECK
 respond to posts
 respond to edits
 add EW link ------------------ CHECK
-Search heuristics
+Search heuristics - notes: 1. perfect match 2. check if substring -> pick least edits match 3. pick least edits match with cutoff 4. ignore ------------------ CHECK
