@@ -1,7 +1,10 @@
 import praw
+from prawcore.exceptions import PrawcoreException
 import re
 import json
 import difflib
+import time
+import sys
 from pprint import pprint
 
 bot = praw.Reddit(user_agent='EternalCards 0.1',
@@ -17,6 +20,8 @@ botAlt = praw.Reddit(user_agent='EternalCards 0.1',
                   password='pizzaplace')
 
 subreddit = bot.subreddit('EternalCardGame')
+
+subredditAlt = bot.subreddit('Abeneezer')
 
 writerName = 'EternalCards'
 
@@ -92,17 +97,25 @@ def buildResponse(comment, result = ''):
     return newResult;
 
 #print(buildResponse('[[cirsos c]]'))
+def main():
+    try:
+        for comment in comments:
+            comment.refresh()
+            alreadyDone = False
+            for y in comment.replies:
+                if y.author == writerName:
+                    alreadyDone = True
+            text = comment.body
+            if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
+                finished = buildResponse(text)
+                message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
+                if finished != '':
+                    print (message)
+                    comment.reply(message)
+    except PrawcoreException:
+        print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        time.sleep(60*5)
+        main()
+    print('exiting')
 
-for comment in comments:
-    comment.refresh()
-    alreadyDone = False
-    for y in comment.replies:
-        if y.author == writerName:
-            alreadyDone = True
-    text = comment.body
-    if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
-        finished = buildResponse(text)
-        message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
-        if finished != '':
-            print (message)
-            comment.reply(message)
+main()
