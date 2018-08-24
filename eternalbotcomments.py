@@ -5,6 +5,7 @@ import json
 import difflib
 import time
 import sys
+from string import capwords
 from pprint import pprint
 
 bot = praw.Reddit(user_agent='EternalCards 0.1',
@@ -85,7 +86,7 @@ def buildResponse(comment, result = ''):
             link = fullNames[x][1]
             url = fullNames[x][2]
 
-    param2 = '[' + param + '](' + url + ')  ' if correctlyNamed else '[' + cardName.title() + '](' + url + ')  '
+    param2 = '[' + param + '](' + url + ')  ' if correctlyNamed else '[' + cardName.capwords() + '](' + url + ')  '
     param3 = ' - ([EWC](' + link + ')) \n \n'
     if cardFound:
         newResult = result + param2 + param3
