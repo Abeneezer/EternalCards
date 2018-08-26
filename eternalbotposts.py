@@ -86,7 +86,7 @@ def buildResponse(comment, result = ''):
             link = fullNames[x][1]
             url = fullNames[x][2]
 
-    param2 = '[' + param + '](' + url + ')  ' if correctlyNamed else '[' + cardName.capwords() + '](' + url + ')  '
+    param2 = '[' + param + '](' + url + ')  ' if correctlyNamed else '[' + capwords(cardName) + '](' + url + ')  '
     param3 = ' - ([EWC](' + link + ')) \n \n'
     if cardFound:
         newResult = result + param2 + param3
