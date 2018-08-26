@@ -5,6 +5,7 @@ import json
 import difflib
 import time
 import sys
+from string import capwords
 from pprint import pprint
 
 bot = praw.Reddit(user_agent='EternalCards 0.1',
