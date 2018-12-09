@@ -114,7 +114,7 @@ def main():
                 message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
                 if finished != '':
                     print (message)
-                    #comment.reply(message)
+                    comment.reply(message)
     except PrawcoreException:
         print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         time.sleep(60*5)
