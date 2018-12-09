@@ -106,7 +106,9 @@ def main():
                 if y.author == writerName:
                     alreadyDone = True
             text = submission.selftext
-            if '[[' in text and ']]' in text and submission.author != writerName and not alreadyDone:
+            if ('[[' in text and ']]' in text and submission.author != writerName
+            and comment.author != "MTGCardFetcher" and not alreadyDone
+            and not '/u/MTGCardFetcher'.lower() in text.lower()):
                 finished = buildResponse(text)
                 message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
                 if finished != '':

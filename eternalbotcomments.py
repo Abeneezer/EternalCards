@@ -107,12 +107,14 @@ def main():
                 if y.author == writerName:
                     alreadyDone = True
             text = comment.body
-            if '[[' in text and ']]' in text and comment.author != writerName and not alreadyDone:
+            if ('[[' in text and ']]' in text and comment.author != writerName
+            and comment.author != "MTGCardFetcher" and not alreadyDone
+            and not '/u/MTGCardFetcher'.lower() in text.lower()):
                 finished = buildResponse(text)
                 message = finished + " ^^Problems ^^or ^^questions? ^^Contact ^^[\/u\/Abeneezer](https://www.reddit.com/user/Abeneezer)"
                 if finished != '':
                     print (message)
-                    comment.reply(message)
+                    #comment.reply(message)
     except PrawcoreException:
         print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         time.sleep(60*5)
