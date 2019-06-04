@@ -1,6 +1,6 @@
 import praw
+from praw.exceptions import ClientException
 import prawcore
-from prawcore.exceptions import PrawcoreException
 import re
 import json
 import difflib
@@ -116,13 +116,13 @@ def main():
                 if finished != '':
                     print (message)
                     comment.reply(message)
-        except prawcore.exceptions.ClientException:  # fix for deleted comments
+        except ClientException:  # fix for deleted comments
             print('SKIPPING due to ClientException:', comment, comment.body)
             continue
         except:
             print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             time.sleep(60*5)
-            continue
+            main()
     print('exiting')
 
 main()
