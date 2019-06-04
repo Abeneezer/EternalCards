@@ -1,5 +1,5 @@
 import praw
-from prawcore.exceptions import PrawcoreException
+from prawcore.exceptions import APIException
 from prawcore.exceptions import ClientException
 import re
 import json
@@ -116,7 +116,7 @@ def main():
                 if finished != '':
                     print (message)
                     comment.reply(message)
-        except PrawcoreException:
+        except APIException:
             print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             time.sleep(60*5)
             continue
