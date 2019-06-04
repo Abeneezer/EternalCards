@@ -1,4 +1,5 @@
 import praw
+from prawcore.exceptions import PrawcoreException
 import re
 import json
 import difflib
@@ -98,8 +99,8 @@ def buildResponse(comment, result = ''):
 
 #print(buildResponse('[[cirsos c]]'))
 def main():
-    for submission in submissions:
-        try:
+    try:
+        for submission in submissions:
             alreadyDone = False
             for y in submission.comments:
                 if y.author == writerName:
@@ -112,13 +113,10 @@ def main():
                 if finished != '':
                     print (message)
                     submission.reply(message)
-        except prawcore.exceptions.APIException:
-            print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-            time.sleep(60*5)
-            continue
-        except prawcore.exceptions.ClientException:  # fix for deleted comments
-            print('SKIPPING due to ClientException:', comment, comment.body)
-            continue
+    except PrawcoreException:
+        print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        time.sleep(60*5)
+        main()
     print('exiting')
 
 main()
