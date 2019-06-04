@@ -100,8 +100,8 @@ def buildResponse(comment, result = ''):
 
 #print(buildResponse('[[cirsos c]]'))
 def main():
-    try:
-        for comment in comments:
+    for comment in comments:
+        try:
             comment.refresh()
             alreadyDone = False
             for y in comment.replies:
@@ -116,13 +116,13 @@ def main():
                 if finished != '':
                     print (message)
                     comment.reply(message)
-    except PrawcoreException:
-        print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        time.sleep(60*5)
-        main()
-    except ClientException:  # fix for deleted comments
-        print('SKIPPING due to ClientException:', comment, comment.body)
-        continue
+        except PrawcoreException:
+            print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            time.sleep(60*5)
+            continue
+        except ClientException:  # fix for deleted comments
+            print('SKIPPING due to ClientException:', comment, comment.body)
+            continue
     print('exiting')
 
 main()
