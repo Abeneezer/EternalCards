@@ -119,7 +119,7 @@ def main():
         print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         time.sleep(60*5)
         main()
-    except ClientException:
+    except ClientException(self.MISSING_COMMENT_MESSAGE):
         print("Client Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         time.sleep(60*5)
         main()
