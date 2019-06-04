@@ -117,6 +117,10 @@ def main():
         print("Prawcore Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
         time.sleep(60*5)
         main()
+    except ClientException:
+        print("Client Exceptions thrown at " + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+        time.sleep(60*5)
+        main()
     print('exiting')
 
 main()
